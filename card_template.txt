@@ -1,0 +1,24 @@
+The card template is designed to capture all information about a card design.
+This includes:
+    Names and effects boxes (attack and boost), with all formatting and fonts.
+    Stats, with all formatting and fonts. 0-inf, can be N/A *or* null.
+    Template images, such as a card border design, or a set of stat box images.
+        These will have their own JSON files, each with similar render descriptions to custom images.
+    Custom images, with location, scaling, cropping, and file name, at a minimum.
+Most information can be nonexistent (null) in the JSON file, including:
+    Guard or Armor Stats
+    Effects
+    Any Cost value (force or gauge)
+    Fonts
+    Template images
+    Custom images
+These should be handled gracefully:
+    Missing guard or armor should not be rendered at all.
+    Same for effects and costs.
+    Fonts should fall back to a default font.
+    Missing template images should fall back to a set of default ones.
+    Custom images are sub-objects of the larger JSON card file, which can be missing:
+        Scaling - Render at 1:1 scale
+        Cropping - Render uncropped
+        file name (cannot be missing, but can be invalid) - Render a placeholder or error image.
+Information that should not be null should be handled gracefully if possible, but an error message is also fine.

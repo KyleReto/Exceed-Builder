@@ -1,0 +1,9 @@
+{
+    "Attack Name":"Assault",
+    "Range":1,
+    "Power":4,
+    "Speed":5,
+    "Effects":"<b>Before:</b> Close 2.<br><b>Hit:</b> Gain <b>Advantage<b> <i>(You take the next turn, regardless of who initiated the Strike).<i>",
+    "Boost Name":"Backstep",
+    "Boost Effect":"Retreat up to 4."
+ }
