@@ -1,5 +1,6 @@
 The card template is designed to capture all information about a card design.
 This includes:
+    Card type (Normal, Special, or Ultra)
     Names and effects boxes (attack and boost), with all formatting and fonts.
     Stats, with all formatting and fonts. 0-inf, can be N/A *or* null.
     Template images, such as a card border design, or a set of stat box images.
