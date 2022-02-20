@@ -8,28 +8,45 @@ import glob
 # If the code seems disorganized, that's because it is.
 
 is_elements_collapsed = False
+is_stats_collapsed = False
+canvas_span = 1
 def toggle_elements():
     global is_elements_collapsed
+    global canvas_span
     if is_elements_collapsed:
+        # Expand elements
         Grid.grid(elements_frame)
-        collapse_elements_button.text = '<<'
+        collapse_elements_button['text'] = '<<'
+        collapse_elements_button.grid(sticky=NE)
         is_elements_collapsed = False
+        canvas_frame.grid(column=1,columnspan=canvas_span-1)
+        canvas_span -= 1
     else:
+        # Collapse elements
         Grid.grid_remove(elements_frame)
-        collapse_elements_button.text = '>>'
+        collapse_elements_button['text'] = '>>'
+        collapse_elements_button.grid(sticky=NW)
         is_elements_collapsed = True
+        canvas_frame.grid(column=0, columnspan=canvas_span+1)
+        canvas_span += 1
 
-is_stats_collapsed = False
 def toggle_stats():
     global is_stats_collapsed
+    global canvas_span
     if is_stats_collapsed:
         Grid.grid(stats_frame)
-        collapse_stats_button.text = '<<'
+        collapse_stats_button['text'] = '>>'
+        collapse_stats_button.grid(sticky=NW)
         is_stats_collapsed = False
+        canvas_frame.grid(columnspan=canvas_span-1)
+        canvas_span -= 1
     else:
         Grid.grid_remove(stats_frame)
-        collapse_stats_button.text = '>>'
+        collapse_stats_button['text'] = '<<'
+        collapse_stats_button.grid(sticky=NE)
         is_stats_collapsed = True
+        canvas_frame.grid(columnspan=canvas_span+1)
+        canvas_span += 1
 
 # Create and set up the root window.
 root = Tk()
@@ -43,8 +60,8 @@ style.configure("elements_frame.TFrame", background='grey')
 style.configure("canvas_frame.TFrame", background='white')
 style.configure("stats_frame.TFrame", background='grey')
 style.configure("menu_bar.TFrame", background='grey')
-
 style.configure("Toolbutton", background='grey')
+style.configure("collapse_expand.TButton", background='grey')
 
 # Set up the grid
 Grid.columnconfigure(root, 0, weight=1)
@@ -73,18 +90,19 @@ canvas_frame.grid(column=1, row=1, rowspan=3, sticky=N+E+S+W)
 stats_frame = ttk.Frame(mainframe, style="stats_frame.TFrame")
 stats_frame.grid(column=2, row=1, rowspan=3, sticky=N+E+S+W)
 
+collapse_elements_button = ttk.Button(mainframe, width=3, style='collapse_expand.TButton', text='<<', command=toggle_elements)
+collapse_elements_button.grid(column=0, row=1, sticky=NE)
+collapse_stats_button = ttk.Button(mainframe, width=3, style='collapse_expand.TButton', text='>>', command=toggle_stats)
+collapse_stats_button.grid(column=2, row=1, sticky=NW)
+
 # Set up the menu bar, which allows the user to complete various application-level actions, like saving or loading.
 menu_bar_button_padding = "15 4 10 4"
 ttk.Button(menu_bar, text="File", width=4, style="Toolbutton", padding=menu_bar_button_padding).grid(column=0, row=0, sticky=NW)
 ttk.Button(menu_bar, text="Edit", width=4, style="Toolbutton", padding=menu_bar_button_padding).grid(column=1, row=0, sticky=NW)
 
 # Set up the elements frame, which allows the user to add elements to the canvas.
-collapse_elements_button = ttk.Button(elements_frame, text='<<', command=toggle_elements)
-collapse_elements_button.grid(column=0, row=0, sticky=NE)
 
 # Set up the stats frame, which allows the user to adjust the stats of the card on the canvas.
-collapse_stats_button = ttk.Button(stats_frame, text='<<', command=toggle_stats)
-collapse_stats_button.grid(column=0, row=0, sticky=NE)
 
 # img = ImageTk.PhotoImage(Image.open("Templates\Default\Stat Blocks\Armor.png"))
 
