@@ -10,7 +10,12 @@ def input_or_default(parameter_name, default_val):
     return output
 
 def input_required(parameter_name):
-    pass
+    while(True):
+        user_input = input(parameter_name + ': ')
+        if user_input != '':
+            return user_input
+        print('This field is required.')
+
 
 action_type = 0
 while (action_type != 3):
@@ -21,15 +26,17 @@ while (action_type != 3):
     card = Card()
 
     if action_type == 1:
-        card.card_type = input(f"Card Type (Normal, Special, or Ultra): {card.card_type}")
-        card.attack_name = input_or_default("Attack Name", 'Power')
-        card.range = input("Attack Range: ")
-        card.power = input("Attack Power: ")
-        card.speed = input("Attack Speed: ")
-        card.boost_name = input("Boost Name: ")
-        card.boost_effect = input("Boost Effect: ")
+        card.card_type = input_required("Card Type (Normal, Special, or Ultra)")
+        card.attack_name = input_required("Attack Name")
+        card.range = input_required("Attack Range")
+        card.power = input_required("Attack Power")
+        card.speed = input_required("Attack Speed")
+        card.boost_name = input_required("Boost Name")
+        card.boost_effect = input_required("Boost Effect")
         print("The following parameters are optional. Press [Enter] to skip any.")
-
+        # TODO: Add all optional parameters
+        # TODO: Add file output
+        # TODO: Add export functionality
         print(card.to_json())
     elif action_type == 2:
         # TODO: Load a card from a file
