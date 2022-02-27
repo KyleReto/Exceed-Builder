@@ -1,0 +1,55 @@
+{
+    "Card Type":"Ultra",
+    "Attack Name":"Plasma",
+    "Range":"2-4",
+    "Power":"6",
+    "Speed":"4",
+    "Boost Name":"Level 5",
+    "Boost Effect":"<b>Now:</b> Draw 2 cards.\n<b>Hit:</b> Add <b style='color:red'>Power</b> equal to the difference in hand size.",
+    "Effects":"<b>Hit:</b> Push 2. If the opponent is at the edge of the arena, <b style='color:red'>+4 Power</b>.",
+    "Guard":"3",
+    "Armor":"1",
+    "Attack Cost":"4G",
+    "Boost Cost":"1F",
+    "Template":{
+        "Background":"Default/Backgrounds/bg.png",
+        "Border":"Default/Borders/border.png",
+        "Back":"Default/Backs/back.png",
+        "Fonts":{
+            "Attack Name":"Default/Fonts/attack name.woff2",
+            "Effects":"Default/Fonts/effects.woff2",
+            "Boost Name":"Default/Fonts/boost name.woff2",
+            "Boost Effects":"Default/Fonts/boost effects.woff2",
+            "Numbers":"Default/Fonts/numbers.woff2"
+        },
+        "Stat Blocks":{
+            "Range":"Default/Stat Blocks/range.png",
+            "Power":"Default/Stat Blocks/power.png",
+            "Speed":"Default/Stat Blocks/speed.png",
+            "Guard":"Default/Stat Blocks/guard.png",
+            "Armor":"Default/Stat Blocks/armor.png"
+        },
+        "Symbols":{
+            "Force":"Default/Symbols/force.png",
+            "Gauge":"Default/Symbols/gauge.png"
+        },
+        "Text Boxes":{
+            "Attack Name":"Default/Text Boxes/Attack Name.png",
+            "Effects":"Default/Text Boxes/Attack Effects.png",
+            "Boost Name":"Default/Text Boxes/Boost Name.png",
+            "Boost Effects":"Default/Text Boxes/Boost Effects.png"
+        }
+    },
+    "Custom Images":{
+        "1":{
+            "Path":"Custom/image_01.png",
+            "x-offset":"50px",
+            "y-offset":"100px",
+            "Horizontal Scale":"150%",
+            "Vertical Scale":"90%"
+        },
+        "2":{
+            "Path":"Custom/image_02.jpg"
+        }
+    }
+}
