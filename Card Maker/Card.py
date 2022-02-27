@@ -11,7 +11,17 @@ class Card:
         self.boost_name = ''
         self.boost_effect = ''
 
+    def is_valid(self):
+        for prop in self.__dict__:
+            if self.__getattribute__(prop) == '':
+                return False
+        return True
+
     def to_json(self):
+
+        if not self.is_valid():
+            raise RuntimeError("Card is missing one or more default properties")
+
         # Add all mandatory elements
         output = ("{\n"
         f"   \"Card Type\":\"{self.card_type}\",\n"
@@ -23,8 +33,8 @@ class Card:
         f"   \"Boost Effect\":\"{self.boost_effect}\"")
 
         # Add all optional elements, if present
-
+        # TODO: this lol
 
         # Close the object and return it
-        output += "}"
+        output += "\n}"
         return output
