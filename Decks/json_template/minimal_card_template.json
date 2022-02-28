@@ -1,9 +1,14 @@
 {
     "Card Type":"Normal",
     "Attack Name":"Assault",
+    "Attack Cost":"",
+    "Effects":"",
     "Range":"1",
     "Power":"4",
     "Speed":"5",
+    "Guard":"",
+    "Armor":"",
+    "Boost Cost":"1F",
     "Boost Name":"Backstep",
     "Boost Effect":"Retreat up to 4."
 }
