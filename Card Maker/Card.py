@@ -22,25 +22,26 @@ class Card:
         else:
             return ""
 
-    def to_json(self):
-
-        # Add all mandatory elements
-        output = ("{\n"
-        f"   \"Card Type\":\"{self.card_type}\",\n"
-        f"   \"Attack Name\":\"{self.attack_name}\",\n"
-        f"   \"Attack Cost\":\"{self.attack_cost}\",\n"
-        f"   \"Effects\":\"{self.effects}\",\n"
-        f"   \"Range\":\"{self.range}\",\n"
-        f"   \"Power\":\"{self.power}\",\n"
-        f"   \"Speed\":\"{self.speed}\",\n"
-        f"   \"Guard\":\"{self.guard}\",\n"
-        f"   \"Armor\":\"{self.armor}\",\n"
-        f"   \"Boost Name\":\"{self.boost_name}\",\n"
-        f"   \"Boost Cost\":\"{self.boost_cost}\",\n"
-        f"   \"Boost Effect\":\"{self.boost_effect}\"")
-
-        # TODO: Add all optional elements, if present
-
-        # Close the object and return it
-        output += "\n}"
+    def serialize(self):
+        output = json.dumps(self, default=lambda o: o.__dict__, indent=4)
         return output
+    
+    @staticmethod
+    def deserialize(json_str):
+        json_obj = json.loads(json_str)
+        card = Card()
+        for key in json_obj:
+            setattr(card, key, json_obj.get(key))
+        return card
+    
+    def to_file(self, file_path):
+        f = open(file_path, 'w')
+        f.write(self.serialize())
+        f.close()
+    
+    @staticmethod
+    def from_file(file_path):
+        f = open(file_path, 'r')
+        card = Card.deserialize(f.read())
+        f.close()
+        return card
